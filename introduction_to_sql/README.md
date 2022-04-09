@@ -63,6 +63,25 @@ example: `DELETE FROM contancts WHERE id = 2;`
 | 1   | Or   | `Cohen`         |
 | 3   | Avi | Raul      |
 
+### Querying Data with the `SELECT` Statement 
+___
+__Example Questions:__
+* Who are all my contacts?
+* Who are all my contacts with a first name of Avi?
+* How many contacts do I have?
+
+__The `SELECT` List__:
+* Most of the time it contains a list of columns
+* from a table we want to query
+* A `FROM` clause is required
+* After every column comes a comma
+* No comma after the last column
+
+FORMULA: `SELECT <COLUMN_NAME>,<COLUMN_NAME> FROM <TABLE_NAME>;`
+example: SELECT first_name, last_name FROM contacts;
+
+__`FROM` Clause__:
+
 
 
 
