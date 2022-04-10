@@ -166,6 +166,54 @@ __Boolean Operators__:
 `SELECT c.first_name, c.last_name FROM contacts c WHERE c.last_name IS NOT NULL;`
 
 
+### Filtering Results with the `ORDER BY` and `GROUP BY`:
+
+`ORDER BY`:
+* Allows sorting of results set
+* After the `WHERE` clause (if there is one)
+* Specify one or more columns
+* Separate columns by commas
+* ASC (default) or DESC
+
+"Who are all the people in my contact list, ordered by last name?"
+`SELECT c.last_name, c.first_name FROM contacts c ORDER BY c.last_name;`
+
+#### Set Function: 
+* Computes new values from column values
+* Use in place of columns in `SELECT` clause
+* Passes column name to function
+* Helps us to ask more interesting questions
+* Often used with the `DISTINCT` qualifier
+___
+* `COUNT` - Count of the column specified (includes NULL values if * is used)
+* `NAX` - Maximum value of the column (does not include NULL values).
+* `MIN` - Minimum value of the column (does not include NULL values).
+* `AVG` - Average value of the column (does not include NULL values, only numeric column).
+* `SUM` - Sum value of the column (does not include NULL values, only numeric column).
+
+___
+"What is the total number of times I've contacted my contacts?"
+`SELECT SUM(p.contacted_number) FROM person p;` <br>
+"What is the count of unique first names among my contacts?"
+`SELECT COUNT(DISTINCT p.first_name) FROM person p;` <br>
+___
+`GROUP BY`:
+* Allows multiple columns with a set function
+* Break result set into subsets
+* Runs set function against each subset
+* Result set returns 1 row per subset
+* Subset is dictated by column in `GROUP BY`
+* Column must appear in the SELECT LIST
+* Appears after `FROM` and/or `WHERE` Clauses
+
+"What is the count of every unique first name among my contacts?"
+`SELECT COUNT(p.first_name), p.first_name FROM person p GROUP BY p.first_name;`
+
+`HAVING`:
+"What is the count of unique first names among my contacts that appear at least 5 times?"
+`SELECT COUNT(DISTINCT p.first_name), p.first_name FROM person p GROUP BY p.first_name
+HAVING COUNT(DISTINCT p.first_name) >=5;`
+
 
 
 
